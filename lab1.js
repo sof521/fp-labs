@@ -1,31 +1,32 @@
 const numbers = [1, 2, 3, 4, 5]
 
-const evenNumbers = numbers.filter(n => n % 2 === 0)
-console.log("Чётные числа:", evenNumbers)
+//1
+const evenNumbers = (arr) => arr.filter(n => n % 2 === 0)
+console.log("Чётные числа:", evenNumbers(numbers))
 
-const squareNumbers = numbers.map(n => n * n)
-console.log("Квадраты чисел:", squareNumbers)
+//2
+const squareNumbers = (arr) => arr.map(n => n * n)
+console.log("Квадраты чисел:", squareNumbers(numbers))
 
-const greaterThanThree = numbers.filter(n => n > 3)
-console.log("Числа больше 3:", greaterThanThree)
+//3
+const objects = [{ value: 4 }, { value: 12 }, { value: 20 }, { value: 9 }]
 
-const sumNumbers = numbers.reduce((acc, curr) => acc + curr, 0)
-console.log("Сумма чисел массива:", sumNumbers)
+const greaterThanTen = (arr) => arr.filter(n => n.value > 10)
+console.log("Числа больше 10:", greaterThanTen(objects))
 
-function transformArray (func, array) {
-    return array.map(func)
-}
-const result = transformArray(n => n * 3, numbers)
-console.log(result)
+//4
+const sumNumbers = (arr) => arr.reduce((acc, curr) => acc + curr, 0)
+console.log("Сумма чисел массива:", sumNumbers(numbers))
 
-const even = numbers.filter(n => n % 2 === 0)
-const squareOfEven = even.map(n => n * n)
-const sumOfSquares = squareOfEven.reduce((acc, curr) => acc + curr, 0)
+//5
+const transformArray = (func, arr) => arr.map(func)
+console.log(transformArray(n => n * 3, numbers))
+
+//6
+const sumOfSquares = sumNumbers(squareNumbers(evenNumbers(numbers)))
 console.log("Сумма квадратов чётных чисел:", sumOfSquares)
 
-const objects = [{ value: 4 }, { value: 12 }, { value: 20 }, { value: 9 }]
-const filtered = objects.filter(obj => obj.value > 10)
-const values = filtered.map(obj => obj.value)
-const sum = values.reduce((acc, curr) => acc + curr, 0)
-const average = sum / values.length
+//7
+const filtered = greaterThanTen(objects);
+const average = sumNumbers(filtered.map(obj => obj.value)) / filtered.length
 console.log("Cреднее арифметическое всех чисел, больших заданного значения:", average)
