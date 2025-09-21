@@ -1,4 +1,4 @@
-const numbers = [1, 2, 3, 4, 5]
+const numbers = [1, 15, 39, 400, -12]
 
 //1
 const evenNumbers = (arr) => arr.filter(n => n % 2 === 0)
@@ -9,10 +9,14 @@ const squareNumbers = (arr) => arr.map(n => n * n)
 console.log("Квадраты чисел:", squareNumbers(numbers))
 
 //3
-const objects = [{ value: 4 }, { value: 12 }, { value: 20 }, { value: 9 }]
+const objects = [
+  { name: "Rose", age: 14 }, 
+  { name: "Tim", age: null }, 
+  { age: 21 }, 
+  { name: "Jack", value: 14 } ]
 
-const greaterThanTen = (arr) => arr.filter(n => n.value > 10)
-console.log("Числа больше 10:", greaterThanTen(objects))
+const hasAge = (arr) => arr.filter(obj => obj.hasOwnProperty("age"))
+console.log("Объекты с возрастом:", hasAge(objects))
 
 //4
 const sumNumbers = (arr) => arr.reduce((acc, curr) => acc + curr, 0)
@@ -27,6 +31,14 @@ const sumOfSquares = sumNumbers(squareNumbers(evenNumbers(numbers)))
 console.log("Сумма квадратов чётных чисел:", sumOfSquares)
 
 //7
-const filtered = greaterThanTen(objects);
-const average = sumNumbers(filtered.map(obj => obj.value)) / filtered.length
-console.log("Cреднее арифметическое всех чисел, больших заданного значения:", average)
+const objects1 = [{ value: 4 }, { value: 12 }, { value: -9 }, { value: null }, { value: 'not a number' }]
+
+const greaterThanNum = (arr, num) => 
+  arr.filter(obj => typeof obj.value === "number" && obj.value > num)
+
+const average = (arr, num) => {
+  const filtered = greaterThanNum(arr, num)
+  return filtered.length === 0 ? 0 : sumNumbers(filtered.map(obj => obj.value)) / filtered.length
+}
+
+console.log("Cреднее арифметическое всех чисел, больших заданного значения:", average(objects1, 10))
