@@ -21,5 +21,3 @@ export const getFilter  = (filter) => {
     else
         return obj => obj.completed || !obj.completed
 }
-
-export const filterTasks = (filter, arr) => arr.filter(getFilter(filter))
