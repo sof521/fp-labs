@@ -1,0 +1,39 @@
+body {
+  background-color: #fefbf7;
+}
+
+.form-control:focus {
+  border-color: #8a2be2;
+  box-shadow: 0 0 0 0.2rem rgba(198, 159, 212, 0.25);
+}
+
+.btn-primary {
+  background-color: #8a2be2;
+  border-color: #8a2be2;
+}
+
+.btn-primary:hover {
+  background-color: #6f22b6; 
+  border-color: #6f22b6;    
+}
+
+.btn-primary:focus:active {
+  background-color: #4c1184; 
+  border-color: #4c1184;   
+}
+
+.btn-danger {
+  background-color: #8a2be2;
+  border-color: #8a2be2;
+}
+
+.form-check-input:checked {
+  background-color: #8a2be2;
+  border-color: #8a2be2;
+}
+
+.form-check-input:focus {
+  background-color: #8a2be2;
+  border-color: #8a2be2;
+  box-shadow: 0 0 0 0.2rem rgba(198, 159, 212, 0.25);
+}
