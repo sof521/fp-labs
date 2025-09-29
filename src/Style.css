@@ -1,10 +1,10 @@
 body {
-  background-color: #fefbf7;
+  background-color: #fffef08f;
 }
 
 .form-control:focus {
   border-color: #8a2be2;
-  box-shadow: 0 0 0 0.2rem rgba(198, 159, 212, 0.25);
+  box-shadow: 0 0 0 0.2rem #e0b3f071;
 }
 
 .btn-primary {
@@ -23,8 +23,18 @@ body {
 }
 
 .btn-danger {
-  background-color: #8a2be2;
-  border-color: #8a2be2;
+  background-color: #CF2F31;
+  border-color: #CF2F31;
+}
+
+.btn-danger:hover {
+  background-color: #A51A22;
+  border-color: #A51A22;
+}
+
+.btn-danger:focus:active {
+  background-color: #920110;
+  border-color: #920110;
 }
 
 .form-check-input:checked {
@@ -33,7 +43,7 @@ body {
 }
 
 .form-check-input:focus {
-  background-color: #8a2be2;
+  /* background-color: #8a2be2; */
   border-color: #8a2be2;
-  box-shadow: 0 0 0 0.2rem rgba(198, 159, 212, 0.25);
+  box-shadow: 0 0 0 0.2rem #e0b3f071;
 }
