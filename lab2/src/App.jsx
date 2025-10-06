@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addTask, deleteTask, changeStatus, getFilter } from "./taskFunctions.js";
+import { addTask, deleteTask, changeStatus, filterTasks } from "./taskFunctions.js";
 import './Style.css';
 
 
@@ -26,8 +26,8 @@ function App() {
   const handleFilter = (newFilter) => {
     setFilter(newFilter)
   }
-
-  const visibleTasks = tasks.filter(getFilter(filter))
+  
+  const visibleTasks = filterTasks(filter, tasks)
 
   return (
   <div className="container mt-5 mb-5">
