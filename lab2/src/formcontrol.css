@@ -1,0 +1,42 @@
+.text {
+    border-radius: 12px;
+    font-family: "Glina Script em.";
+    font-size: 34px;   
+    font-weight: 800;
+}
+
+.form-control {
+    border-radius: 12px;
+    font-family: "Glina Script em.";
+    font-size: 18px;   
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    border-color: #d7d7d7;
+}
+
+.form-control:focus {
+    border-color: #FE9B74;
+    box-shadow: 0 0 0 0.2rem #fe9b7450 !important;
+}
+
+.btn-primary {
+    height: 40px;
+    background-color: #FE946A;
+    border-color: #FE946A;
+    border-radius: 12px;
+    font-family: "Glina Script em.";
+    font-size: 18px;   
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+    background-color: #FF8353; 
+    border-color: #FF8353;    
+}
+
+.btn-primary:focus:active {
+    background-color: #FF6B31; 
+    border-color: #FF6B31;   
+}

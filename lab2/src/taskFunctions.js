@@ -1,23 +1,22 @@
-export const addTask = (text, arr) => arr.concat({
-    id: Date.now(),
-    text: text,
-    completed: false
-})
+export const addTask = (text, arr) => [
+  ...arr, 
+  { id: Date.now(), text, completed: false, createdAt: new Date().toISOString()}
+];
 
 export const deleteTask = (id, arr) => arr.filter(obj => obj.id !== id)
 
 export const changeStatus = (id, arr) => 
     arr.map(obj => obj.id === id ? {
-        id: obj.id,
-        text: obj.text,
-        completed: !obj.completed
+        ...obj,
+        completed: !obj.completed,
     } : obj);
 
-export const getFilter  = (filter) => {
-    if (filter === "completed")
-        return obj => obj.completed
-    else if (filter === "active")
-        return obj => !obj.completed
-    else
-        return obj => obj.completed || !obj.completed
+export const filterTasks = (filter, arr) => {
+  if (filter === "all") {
+    return arr;
+  } else if (filter === "completed") {
+    return arr.filter(obj => obj.completed);
+  } else {
+    return arr.filter(obj => !obj.completed);
+  }
 }

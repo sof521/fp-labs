@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Row, Col } from "react-bootstrap";
 import { addTask, deleteTask, changeStatus, filterTasks } from "./taskFunctions.js";
-import './Style.css';
+import { TaskCard } from "./TaskCard";
+import './sidebar.css';
+import './formcontrol.css';
+
+import SvgAll from './assets/all.svg';
+import SvgActive from './assets/active.svg';
+import SvgCompleted from './assets/completed.svg';
 
 
 function App() {
-  const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("all");
   const [newText, setNewText] = useState("");
+  const [tasks, setTasks] = useState(() => {
+    const saved = localStorage.getItem("tasks");
+    return saved ? JSON.parse(saved) : [];
+  });
 
   const handleAdd = () => {
     if (newText.trim() !== "") {
@@ -29,83 +39,87 @@ function App() {
   
   const visibleTasks = filterTasks(filter, tasks)
 
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
   return (
-  <div className="container mt-5 mb-5">
-    <div className="row mb-3">
-      <div className="col">
-        <input 
-          type="text" 
-          className="form-control" 
-          placeholder="Новая задача"
-          value={newText}
-          onChange={(e) => setNewText(e.target.value)}
+  <div>
+    <Row style={{ margin: 0 }}>
+      <Col sm={2} className="bg-white"
+        style={{
+            height: "100vh",
+            position: "fixed",
+            top: 0,
+            left: 0,
+        }}
+      >
+        <div className="container" style={{ marginTop: "40px" }}>
+          <p className="text">Task list</p>
+        </div>
+
+        <div className="nav flex-column nav-pills w-100" id="v-pills-tab"
+          style={{ marginTop: '54px' }}>
+          <button className={`nav-link ${filter === "all" ? "active" : ""}`}
+            onClick={() => handleFilter("all")}
+          >
+            <img src={SvgAll} alt="Все" className="icon me-3" /> Все
+          </button>
+          <button className={`nav-link ${filter === "active" ? "active" : ""}`}
+            onClick={() => handleFilter("active")}
+          >
+            <img src={SvgActive} alt="Активные" className="icon me-3" /> Активные
+          </button>
+          <button className={`nav-link ${filter === "completed" ? "active" : ""}`}
+            onClick={() => handleFilter("completed")}
+          >
+            <img src={SvgCompleted} alt="Выполненные" className="icon me-3" /> Выполненные
+          </button>
+        </div>
+
+        <img
+          src="src/assets/cats.gif"
+          alt="Cat"
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            transform: "scaleX(-1)",
+          }}
         />
-      </div>
-      <div className="col">
-        <button className="btn btn-primary" onClick={handleAdd}>
-          Добавить
-        </button>
-      </div>
-    </div>
-
-    <div className="form-check form-check-inline mt-2 ms-1">
-      <input 
-        class="form-check-input" 
-        type="radio" 
-        name="filterOptions" 
-        id="filterAll" 
-        value="all" 
-        checked={filter === "all"} 
-        onClick={() => handleFilter("all")}
-      />
-      <label className="form-check-label" htmlFor="filterAll">Все</label>
-    </div>
-    <div className="form-check form-check-inline">
-      <input 
-        class="form-check-input" 
-        type="radio" 
-        name="filterOptions" 
-        id="filterActive" 
-        value="active"
-        checked={filter === "active"} 
-        onClick={() => handleFilter("active")}
-      />
-      <label className="form-check-label" htmlFor="filterActive">Активные</label>
-    </div>
-    <div className="form-check form-check-inline">
-      <input 
-        class="form-check-input" 
-        type="radio"
-        name="filterOptions" 
-        id="filterCompleted" 
-        value="completed"
-        checked={filter === "completed"} 
-        onClick={() => handleFilter("completed")}
-      />
-      <label className="form-check-label" htmlFor="filterCompleted">Выполненные</label>
-    </div>
-
-    <ul className="list-group mt-3">
-      {visibleTasks.map(task => (
-        <li key={task.id} className="list-group-item d-flex justify-content-between align-items-center">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              checked={task.completed}
-              onChange={() => handleChange(task.id)}
-            />
-            <label
-              className="form-check-label ms-2"
-              style={{ color: task.completed ? "gray" : "black", }}
-            >
-              {task.text}
-            </label>
+      </Col>
+      <Col sm={10} className="bg-light" style={{ minHeight: "100vh", marginLeft: '16.6667%' }}>
+        <div className="container py-5 px-5">
+          <div className="row">
+            <div className="col">
+              <input 
+                type="text" 
+                className="form-control shadow-sm" 
+                placeholder="Новая задача"
+                value={newText}
+                onChange={(e) => setNewText(e.target.value)}
+              />
+            </div>
+            <div className="col">
+              <button className="btn btn-primary shadow-sm" onClick={handleAdd}>
+                Добавить
+              </button>
+            </div>
           </div>
-          <button className="btn btn-danger btn-sm" onClick={() => handleDelete(task.id)}>Удалить</button>
-        </li>
-      ))}
-    </ul>
+
+          <div className="tab-content" id="v-pills-tabContent">
+            <div className="tab-pane fade show active">
+              <TaskCard 
+                visibleTasks={visibleTasks}
+                handleChange={handleChange}
+                handleDelete={handleDelete}
+              />
+            </div>
+          </div>
+        </div>
+      </Col>
+    </Row>
   </div>
   )
 }
