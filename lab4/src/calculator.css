@@ -1,0 +1,120 @@
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('./assets/PressStart2P-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.page-container {
+  min-height: 100vh;   
+  background-color: #e7faff; 
+  display: flex;               
+  justify-content: center;     
+  align-items: center;           
+}
+
+.snes-container {    
+  position: relative; 
+  width: 355px; 
+  background-color: #D7C2EB;  
+  padding: 25px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+  --border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABZSURBVHgB7ZbBDQAhCATh+rpa7MFC7MFaLEwbkMcmGo2ZeRLCPCAb3ERqbn1WT+V3E/jsEIjfF4eXqF6v2s+OEW/DV2VvRDSfHSPeBlmN+D2xnMf81YivFw9YjR8NKPNh0QAAAABJRU5ErkJggg==)
+}
+
+.icon-duck {
+  position: absolute; 
+  top: 58px;     
+  left: 43%;        
+  transform: translateX(-50%); 
+  height: 30px;      
+  z-index: 10;       
+}
+.icon-1 {
+  left: 52%;       
+}
+.icon-2 {
+  left: 56%;      
+  transform: scaleX(-1);
+}
+
+.icon-cloud {
+  position: absolute; 
+  top: 160px;     
+  left: 8%;      
+  height: 50px;     
+  z-index: 10;  
+}
+
+.snes-input {
+  font-family: 'Press Start 2P', monospace;
+  background-color: #ffffff;
+  width: 100%;
+  font-size: 19px;
+  color: #333;
+  height: 80px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  overflow-x: auto;    
+  overflow-y: hidden; 
+  white-space: nowrap;
+  min-width: 0;
+  scroll-behavior: smooth; 
+}
+.snes-input::-webkit-scrollbar {
+  display: none;
+}
+
+.large-sqrt {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin: 0 2px;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 60px);
+  grid-auto-rows: 60px;        
+  gap: 16px;                
+  justify-content: center;
+}
+
+.snes-button {
+  background-color: #b592d8;
+  color: #270e3f;
+  border-image-slice: 13;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 7px;
+  padding-right: 17px;
+  --border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABZSURBVHgB7ZbBDQAhCAThergibMLibcIiLEIbkMcmGo2ZeRLCPCAb3ERqaX1WT/l3E/jsEIjfF4eXqF6v2s+OEW/DV2VvRDSfHSPeBlmN+D2xnMf81YivFw9Q5R+79QiFYwAAAABJRU5ErkJggg==)
+}
+
+.btn-c {
+  background-color: #A172C3;
+  color: white;
+}
+
+.btn-operation {
+  background-color: #A172C3;
+  color: white
+}
+
+.btn-light {
+  color: white;
+}
+
+.equal-button {
+  background-color: #A172C3;
+  color: white;
+  grid-column: span 2;
+}
+
+.pixel-icon {
+  height: 19px;
+}
